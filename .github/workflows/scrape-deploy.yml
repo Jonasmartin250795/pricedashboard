@@ -1,0 +1,46 @@
+name: Daily Price Scrape & Deploy
+
+on:
+  schedule:
+    - cron: '0 7 * * *' # Every day at 07:00 UTC
+  workflow_dispatch: # Allows manual trigger
+
+jobs:
+  scrape_and_deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: |
+          npm init -y
+          npm install playwright
+
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps chromium
+
+      - name: Run Scraper
+        run: node scraper.js
+        env:
+          PRICERUNNER_URL: "https://www.pricerunner.dk/ct/72/Legetoej?retailer=17553%2C308%2C6836%2C1152%2C1196%2C2957%2C1170&c=price%2Cbrand%2C57121585%2C59583076%2C58387932%2Cmerchant"
+
+      - name: FTP Deploy
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          server-dir: public_html/pricedashboard/
+          exclude: |
+            **/.git*
+            **/.github*
+            node_modules/**
+            scraper.js
+            package.json
+            package-lock.json
