@@ -189,12 +189,9 @@ function renderCampaigns() {
     });
 }
 
-const refreshBtn = document.getElementById('refresh-btn');
-if (refreshBtn) {
-    refreshBtn.addEventListener('click', () => {
-        alert('Trigged manuel "Price Refresh" via Agent Subagent...');
-    });
-}
+document.getElementById('refresh-btn').addEventListener('click', () => {
+    window.open('https://github.com/Jonasmartin250795/pricedashboard/actions/workflows/scrape-deploy.yml', '_blank');
+});
 
 window.onload = () => {
     loadDashboard();
