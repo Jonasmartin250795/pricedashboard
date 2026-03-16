@@ -1,0 +1,278 @@
+@import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;700&display=swap');
+
+:root {
+    --primary-color: #004a62;
+    --accent-color: #ba5754;
+    --bg-color: #ffffff;
+    --text-color: #333333;
+    --border-color: #eeeeee;
+    --win-color: #2e7d32;
+    --loss-color: #d32f2f;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'League Spartan', 'Helvetica', 'Arial', sans-serif;
+    color: var(--text-color);
+    background-color: var(--bg-color);
+    line-height: 1.6;
+}
+
+.main-header {
+    background-color: #ffffff;
+    border-bottom: 2px solid var(--primary-color);
+    padding: 1rem 2rem;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.header-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.main-nav {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    color: var(--primary-color);
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+}
+
+.status-indicator {
+    color: #4caf50;
+    font-size: 0.8rem;
+}
+
+.dashboard-container {
+    max-width: 1400px;
+    margin: 2rem auto;
+    padding: 0 2rem;
+}
+
+.summary-bar {
+    margin-bottom: 3rem;
+}
+
+.summary-bar h1 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    color: var(--primary-color);
+    text-transform: uppercase;
+}
+
+.competitor-selector-container {
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    background: #fcfcfc;
+    border: 1px solid var(--border-color);
+}
+
+.competitor-selector-container h3 {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    color: var(--primary-color);
+}
+
+.chip-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+}
+
+.chip {
+    padding: 0.6rem 1.2rem;
+    background-color: #f0f0f0;
+    color: #555;
+    font-weight: 700;
+    font-size: 0.85rem;
+    cursor: pointer;
+    border-radius: 20px;
+    transition: all 0.2s;
+    user-select: none;
+    border: 1px solid transparent;
+}
+
+.chip.active {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.chip.mandatory {
+    background-color: #e0e0e0;
+    color: var(--primary-color);
+    cursor: default;
+    border: 1px dashed var(--primary-color);
+}
+
+.chip:not(.mandatory):hover {
+    filter: brightness(0.95);
+    border-color: var(--primary-color);
+}
+
+.summary-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    align-items: center;
+}
+
+.stat-card {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.stat-label {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    opacity: 0.8;
+}
+
+.stat-value {
+    font-size: 1.8rem;
+    font-weight: 700;
+}
+
+.btn-primary {
+    background-color: var(--accent-color);
+    color: white;
+    border: none;
+    padding: 1.2rem 2rem;
+    font-weight: 700;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: filter 0.2s;
+}
+
+.btn-primary:hover {
+    filter: brightness(1.1);
+}
+
+.data-table-section {
+    margin-bottom: 4rem;
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+th {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 1.2rem;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+}
+
+td {
+    padding: 1.2rem;
+    border-bottom: 1px solid var(--border-color);
+    font-size: 0.95rem;
+}
+
+tr:hover {
+    background-color: #f9f9f9;
+}
+
+.win {
+    color: var(--win-color);
+    font-weight: 700;
+}
+
+.loss {
+    color: var(--loss-color);
+}
+
+.lowest {
+    background-color: #f1f8e9;
+    font-weight: 700;
+}
+
+.ean-code {
+    font-family: monospace;
+    color: #666;
+    font-size: 0.85rem;
+}
+
+.campaign-summary h2 {
+    color: var(--primary-color);
+    margin-bottom: 2rem;
+    text-transform: uppercase;
+}
+
+.campaign-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.campaign-card {
+    border: 1px solid var(--border-color);
+    padding: 2rem;
+}
+
+.campaign-card h3 {
+    color: var(--accent-color);
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+}
+
+.campaign-card ul {
+    list-style: none;
+}
+
+.campaign-card li {
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+.main-footer {
+    padding: 3rem 2rem;
+    text-align: center;
+    border-top: 1px solid var(--border-color);
+    font-size: 0.8rem;
+    color: #999;
+    margin-top: 4rem;
+}
+
+.rank-badge {
+    background-color: var(--primary-color);
+    color: white;
+    width: 28px;
+    height: 28px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+@media (max-width: 768px) {
+    .summary-stats {
+        grid-template-columns: 1fr;
+    }
+}
