@@ -1,0 +1,30 @@
+[
+  {
+    "rank": 1,
+    "product_name": "LEGO Super Mario Game Boy",
+    "ean": "5702016618426",
+    "prices": {
+      "Bilka": 349,
+      "føtex": 349,
+      "BR": 350,
+      "Jollyroom": 299,
+      "Proshop.dk": 299
+    },
+    "lowest_price": 299,
+    "timestamp": "2026-03-16T12:00:00Z"
+  },
+  {
+    "rank": 2,
+    "product_name": "LEGO Friends Sea Rescue",
+    "ean": "5702017413341",
+    "prices": {
+      "Bilka": 450,
+      "føtex": 450,
+      "BR": 449,
+      "Jollyroom": 449,
+      "Proshop.dk": 455
+    },
+    "lowest_price": 449,
+    "timestamp": "2026-03-16T12:00:00Z"
+  }
+]
