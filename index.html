@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Market Intelligence Dashboard | Salling Group</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="main-header">
+        <div class="header-container">
+            <div class="logo">
+                <svg width="200" height="40" viewBox="0 0 200 40" xmlns="http://www.w3.org/2000/svg">
+                    <text x="0" y="30" font-family="League Spartan, sans-serif" font-weight="bold" font-size="28" fill="#004a62">Salling Group</text>
+                </svg>
+            </div>
+            <nav class="main-nav">
+                <span>Price Monitor Agent</span>
+                <span class="status-indicator">* Live Market Access</span>
+            </nav>
+        </div>
+    </header>
+
+    <main class="dashboard-container">
+        <section class="summary-bar">
+            <h1>Toy Market Monitor</h1>
+            
+            <div class="competitor-selector-container">
+                <h3>Vælg Konkurrenter (Max 4 i tillæg til Salling Group)</h3>
+                <div id="competitor-chips" class="chip-group">
+                    <!-- Chips injected here -->
+                </div>
+            </div>
+
+            <div class="summary-stats">
+                <div class="stat-card">
+                    <span class="stat-label">Produkter Overvåget</span>
+                    <span class="stat-value" id="product-count">0</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-label">Best-in-Market (Salling)</span>
+                    <span class="stat-value" id="salling-wins">0</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-label">Sidste Scrape</span>
+                    <span class="stat-value" id="last-update">...</span>
+                </div>
+                <button id="refresh-btn" class="btn-primary">REFRESH DATA</button>
+            </div>
+        </section>
+
+        <section class="data-table-section">
+            <table id="price-matrix">
+                <thead>
+                    <tr>
+                        <th>Rank</th>
+                        <th>Produkt</th>
+                        <th>EAN</th>
+                        <th>Bilka</th>
+                        <th>føtex</th>
+                        <th>BR</th>
+                        <th>Jollyroom</th>
+                        <th>Proshop</th>
+                        <th>Markedets Laveste</th>
+                    </tr>
+                </thead>
+                <tbody id="price-data-body">
+                    <!-- Data injected here -->
+                    <tr><td colspan="8">Henter data...</td></tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section class="campaign-summary">
+            <h2>Konkurrent Kampagner & Tilbud</h2>
+            <div id="campaign-cards" class="campaign-grid">
+                <!-- Campaigns injected here -->
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <p>&copy; 2026 Salling Group Market Intelligence Unit</p>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
