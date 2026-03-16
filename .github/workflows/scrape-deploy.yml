@@ -20,7 +20,7 @@ jobs:
       - name: Install dependencies
         run: |
           npm init -y
-          npm install playwright
+          npm install playwright-core playwright playwright-stealth
 
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps chromium
@@ -30,17 +30,9 @@ jobs:
         env:
           PRICERUNNER_URL: "https://www.pricerunner.dk/ct/72/Legetoej?retailer=17553%2C308%2C6836%2C1152%2C1196%2C2957%2C1170&c=price%2Cbrand%2C57121585%2C59583076%2C58387932%2Cmerchant"
 
+      - name: Install lftp
+        run: sudo apt-get update && sudo apt-get install -y lftp
+
       - name: FTP Deploy
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
-        with:
-          server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          server-dir: public_html/pricedashboard/
-          exclude: |
-            **/.git*
-            **/.github*
-            node_modules/**
-            scraper.js
-            package.json
-            package-lock.json
+        run: |
+          lftp -e "set ftp:ssl-allow no; open -u ${{ secrets.FTP_USERNAME }},${{ secrets.FTP_PASSWORD }} ${{ secrets.FTP_SERVER }}; mirror -R --verbose --delete --exclude .git/ --exclude .github/ --exclude node_modules/ --exclude scraper.js --exclude package.json --exclude package-lock.json ./ public_html/pricedashboard/; quit"
