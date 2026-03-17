@@ -113,3 +113,55 @@ async function scrapePriceRunner() {
                         let storeName = null;
                         if (rowText.includes('bilka')) storeName = 'Bilka';
                         else if (rowText.includes('føtex')) storeName = 'føtex';
+                        else if (rowText.includes('netto')) storeName = 'Netto';
+                        else if (rowText.includes('jollyroom')) storeName = 'Jollyroom';
+                        else if (rowText.includes('br')) storeName = 'BR';
+                        else if (rowText.includes('proshop')) storeName = 'Proshop';
+
+                        if (storeName) {
+                            const priceMatch = row.innerText.match(/(\d+\.?\d*)\s*kr\./);
+                            const price = priceMatch ? parseFloat(priceMatch[1].replace('.', '')) : null;
+                            const isMember = rowText.includes('medlem') || rowText.includes('club');
+                            stores[storeName] = { price, isMember };
+                        }
+                    });
+
+                    // Market Lowest
+                    const allPrices = Array.from(document.querySelectorAll('span')).map(s => s.innerText.match(/(\d+\.?\d*)\s*kr\./)).filter(m => m).map(m => parseFloat(m[1].replace('.', '')));
+                    const lowest = allPrices.length > 0 ? Math.min(...allPrices) : null;
+
+                    return { ean, retailers: stores, lowest };
+                });
+
+                results.push({
+                    name: product.name,
+                    ean: details.ean,
+                    retailers: details.retailers,
+                    market_lowest: details.lowest,
+                    timestamp: new Date().toISOString()
+                });
+
+                const progress = Math.floor(20 + (results.length / products.length) * 70);
+                await reportProgress("Henter detaljer for " + results.length + "/" + products.length + ": " + product.name, progress);
+
+            } catch (err) {
+                console.error("Error scraping " + product.name + ":", err.message);
+            } finally {
+                await productPage.close();
+            }
+            await randomDelay();
+        }
+
+        fs.writeFileSync(DATA_FILE, JSON.stringify(results, null, 2));
+        await reportProgress('Priser gemt. Uploader til live dashboard...', 95);
+        console.log("Scraping complete. Saved to " + DATA_FILE);
+
+    } catch (error) {
+        console.error('Fatal Scraper Error:', error);
+        process.exit(1);
+    } finally {
+        await browser.close();
+    }
+}
+
+scrapePriceRunner();
