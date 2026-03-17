@@ -16,7 +16,7 @@
             </div>
             <nav class="main-nav">
                 <span>Price Monitor Agent</span>
-                <span class="status-indicator">* Live Market Access</span>
+                <span class="status-indicator">● Live Market Access</span>
             </nav>
         </div>
     </header>
@@ -27,9 +27,7 @@
             
             <div class="competitor-selector-container">
                 <h3>Vælg Konkurrenter (Max 4 i tillæg til Salling Group)</h3>
-                <div id="competitor-chips" class="chip-group">
-                    <!-- Chips injected here -->
-                </div>
+                <div id="competitor-chips" class="chip-group"></div>
             </div>
 
             <div class="summary-stats">
@@ -43,7 +41,7 @@
                 </div>
                 <div class="stat-card">
                     <span class="stat-label">Sidste Scrape</span>
-                    <span class="stat-value" id="last-update">...</span>
+                    <span class="stat-value" id="last-update">-</span>
                 </div>
                 <button id="refresh-btn" class="btn-primary">REFRESH DATA</button>
             </div>
@@ -56,17 +54,12 @@
                         <th>Rank</th>
                         <th>Produkt</th>
                         <th>EAN</th>
-                        <th>Bilka</th>
-                        <th>føtex</th>
-                        <th>BR</th>
-                        <th>Jollyroom</th>
-                        <th>Proshop</th>
+                        <!-- Competitors injected here -->
                         <th>Markedets Laveste</th>
                     </tr>
                 </thead>
                 <tbody id="price-data-body">
                     <!-- Data injected here -->
-                    <tr><td colspan="8">Henter data...</td></tr>
                 </tbody>
             </table>
         </section>
@@ -79,8 +72,21 @@
         </section>
     </main>
 
+    <!-- Loading Overlay -->
+    <div id="loading-overlay" class="overlay hidden">
+        <div class="overlay-content">
+            <div class="loader-orbit"></div>
+            <h2>Opdaterer Markedsdata</h2>
+            <p id="status-message">Initialiserer robot...</p>
+            <div class="progress-container">
+                <div id="progress-bar" class="progress-bar" style="width: 0%"></div>
+            </div>
+            <p class="disclaimer">Dette tager normalt 5-10 minutter. Du kan lukke vinduet og vende tilbage senere.</p>
+        </div>
+    </div>
+
     <footer class="main-footer">
-        <p>&copy; 2026 Salling Group Market Intelligence Unit</p>
+        <p>© 2026 Salling Group Market Intelligence Unit</p>
     </footer>
 
     <script src="app.js"></script>
